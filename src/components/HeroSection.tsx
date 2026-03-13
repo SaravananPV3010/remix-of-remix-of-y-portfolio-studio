@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
 
 const container = {
   hidden: {},
@@ -12,13 +13,33 @@ const item = {
 };
 
 const HeroSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
   return (
     <motion.section
+      ref={ref}
       variants={container}
       initial="hidden"
       animate="visible"
       className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 relative overflow-hidden"
     >
+      {/* Parallax background element */}
+      <motion.div
+        style={{ scale: bgScale }}
+        className="absolute inset-0 -z-10"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[120px]" />
+      </motion.div>
+
+      <motion.div style={{ y: textY, opacity: textOpacity }}>
       <motion.div variants={item} className="mb-8">
         <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-border rounded-sm text-xs font-display uppercase tracking-[0.2em] text-muted-foreground">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
@@ -57,6 +78,7 @@ const HeroSection = () => {
         >
           Get in Touch
         </a>
+      </motion.div>
       </motion.div>
 
       <div className="absolute top-8 right-8 md:right-16 lg:right-24 font-display text-xs text-muted-foreground tracking-[0.3em] uppercase hidden md:block">
