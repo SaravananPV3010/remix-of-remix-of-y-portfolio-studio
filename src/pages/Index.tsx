@@ -4,6 +4,10 @@ import AboutSection from "@/components/AboutSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import TimelineSection from "@/components/TimelineSection";
+import CredentialsSection from "@/components/CredentialsSection";
+import ResumeSection from "@/components/ResumeSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
 import CustomCursor from "@/components/CustomCursor";
@@ -15,9 +19,13 @@ const Index = () => {
       <NavBar />
       <HeroSection />
       <AboutSection />
+      <TimelineSection />
       <ExperienceSection />
       <ProjectsSection />
       <SkillsSection />
+      <CredentialsSection />
+      <TestimonialsSection />
+      <ResumeSection />
       <BlogSection />
       <ContactSection />
     </div>
