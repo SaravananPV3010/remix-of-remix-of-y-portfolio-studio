@@ -31,6 +31,15 @@ const HeroSection = () => {
       animate="visible"
       className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 relative overflow-hidden"
     >
+      {/* Parallax background element */}
+      <motion.div
+        style={{ scale: bgScale }}
+        className="absolute inset-0 -z-10"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[120px]" />
+      </motion.div>
+
+      <motion.div style={{ y: textY, opacity: textOpacity }}>
       <motion.div variants={item} className="mb-8">
         <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-border rounded-sm text-xs font-display uppercase tracking-[0.2em] text-muted-foreground">
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
