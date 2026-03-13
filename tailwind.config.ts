@@ -14,9 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["'Source Serif 4'", "Georgia", "serif"],
-        body: ["'DM Sans'", "system-ui", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        display: ["'Space Grotesk'", "sans-serif"],
+        body: ["'Inter'", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -78,7 +77,7 @@ export default {
           to: { height: "0" },
         },
         "fade-up": {
-          from: { opacity: "0", transform: "translateY(20px)" },
+          from: { opacity: "0", transform: "translateY(30px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
       },

@@ -1,14 +1,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] } },
+  hidden: { opacity: 0, y: 40, filter: "blur(6px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.7, ease: [0.25, 0.1, 0.25, 1] as [number, number, number, number] } },
 };
 
 const HeroSection = () => {
@@ -18,8 +19,9 @@ const HeroSection = () => {
     offset: ["start start", "end start"],
   });
 
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 120]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   return (
     <motion.section
@@ -27,48 +29,61 @@ const HeroSection = () => {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="min-h-screen flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-16 lg:px-24 relative overflow-hidden"
+      className="min-h-screen flex flex-col justify-center px-6 md:px-16 lg:px-24 relative overflow-hidden"
     >
-      <motion.div style={{ y: textY, opacity: textOpacity }}>
-        <motion.p
-          variants={item}
-          className="font-body text-sm text-muted-foreground mb-6 tracking-wide"
-        >
-          Full-stack engineer & founder
-        </motion.p>
-
-        <motion.h1
-          variants={item}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-700 leading-[1.05] tracking-[-0.02em] max-w-4xl"
-        >
-          I build things that
-          <br />
-          people actually use.
-        </motion.h1>
-
-        <motion.p
-          variants={item}
-          className="mt-8 text-base md:text-lg text-muted-foreground max-w-lg font-body leading-[1.7]"
-        >
-          I ship fast, iterate faster, and obsess over craft. 
-          Previously building at startups backed by Y Combinator.
-        </motion.p>
-
-        <motion.div variants={item} className="mt-10 flex gap-5 items-center">
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-foreground text-background font-body font-medium text-sm hover:opacity-85 transition-opacity"
-          >
-            See my work
-          </a>
-          <a
-            href="#contact"
-            className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4 decoration-border hover:decoration-foreground"
-          >
-            Get in touch
-          </a>
-        </motion.div>
+      {/* Parallax background element */}
+      <motion.div
+        style={{ scale: bgScale }}
+        className="absolute inset-0 -z-10"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/[0.03] blur-[120px]" />
       </motion.div>
+
+      <motion.div style={{ y: textY, opacity: textOpacity }}>
+      <motion.div variants={item} className="mb-8">
+        <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-border rounded-sm text-xs font-display uppercase tracking-[0.2em] text-muted-foreground">
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          Available for new projects
+        </span>
+      </motion.div>
+
+      <motion.h1
+        variants={item}
+        className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[0.9] tracking-tight max-w-5xl"
+      >
+        I build things
+        <br />
+        <span className="text-gradient">that matter.</span>
+      </motion.h1>
+
+      <motion.p
+        variants={item}
+        className="mt-8 text-lg md:text-xl text-muted-foreground max-w-xl font-body leading-relaxed"
+      >
+        Full-stack engineer & founder. I ship fast, iterate faster, and obsess
+        over craft. Previously building at startups backed by Y Combinator.
+      </motion.p>
+
+      <motion.div variants={item} className="mt-12 flex gap-4 flex-wrap">
+        <a
+          href="#projects"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-medium text-sm tracking-wide hover:opacity-90 transition-opacity rounded-sm"
+        >
+          View Projects
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
+        <a
+          href="#contact"
+          className="inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground font-display font-medium text-sm tracking-wide hover:border-primary/50 transition-colors rounded-sm"
+        >
+          Get in Touch
+        </a>
+      </motion.div>
+      </motion.div>
+
+      <div className="absolute top-8 right-8 md:right-16 lg:right-24 font-display text-xs text-muted-foreground tracking-[0.3em] uppercase hidden md:block">
+        Portfolio '25
+      </div>
     </motion.section>
   );
 };
