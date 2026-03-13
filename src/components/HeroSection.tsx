@@ -13,8 +13,19 @@ const item = {
 };
 
 const HeroSection = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+
   return (
     <motion.section
+      ref={ref}
       variants={container}
       initial="hidden"
       animate="visible"
