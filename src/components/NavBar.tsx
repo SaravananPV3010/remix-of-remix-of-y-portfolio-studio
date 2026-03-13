@@ -1,5 +1,5 @@
-import { motion, useScroll, useSpring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, useScroll, useSpring, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useCallback } from "react";
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 
