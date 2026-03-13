@@ -79,6 +79,7 @@ const HeroSection = () => {
           Get in Touch
         </a>
       </motion.div>
+      </motion.div>
 
       <div className="absolute top-8 right-8 md:right-16 lg:right-24 font-display text-xs text-muted-foreground tracking-[0.3em] uppercase hidden md:block">
         Portfolio '25
