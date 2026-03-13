@@ -11,35 +11,22 @@ import ResumeSection from "@/components/ResumeSection";
 import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
 import CustomCursor from "@/components/CustomCursor";
-import ParallaxBackground from "@/components/ParallaxBackground";
-import ParallaxDivider from "@/components/ParallaxDivider";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background scroll-smooth relative">
-      <ParallaxBackground />
       <CustomCursor />
       <NavBar />
       <HeroSection />
-      <ParallaxDivider text="ABOUT" direction="left" />
       <AboutSection />
-      <ParallaxDivider variant="shapes" />
-      <TimelineSection />
-      <ParallaxDivider variant="line" />
       <ExperienceSection />
-      <ParallaxDivider text="WORK" direction="right" />
       <ProjectsSection />
-      <ParallaxDivider variant="shapes" />
       <SkillsSection />
-      <ParallaxDivider variant="line" />
+      <TimelineSection />
       <CredentialsSection />
-      <ParallaxDivider text="TESTIMONIALS" direction="left" />
       <TestimonialsSection />
-      <ParallaxDivider variant="shapes" />
       <ResumeSection />
-      <ParallaxDivider variant="line" />
       <BlogSection />
-      <ParallaxDivider text="CONTACT" direction="right" />
       <ContactSection />
     </div>
   );
