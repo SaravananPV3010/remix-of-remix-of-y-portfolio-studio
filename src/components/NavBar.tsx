@@ -79,34 +79,15 @@ const NavBar = () => {
           {mounted && (
             <motion.button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              whileTap={{ scale: 0.85, rotate: 15 }}
-              whileHover={{ scale: 1.1 }}
-              className="relative p-2 border border-border rounded-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors overflow-hidden"
+              whileTap={{ scale: 0.9 }}
+              className="p-2 border border-border rounded-sm text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"
               aria-label="Toggle theme"
             >
-              <AnimatePresence mode="wait" initial={false}>
-                {theme === "dark" ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ y: -20, opacity: 0, rotate: -90 }}
-                    animate={{ y: 0, opacity: 1, rotate: 0 }}
-                    exit={{ y: 20, opacity: 0, rotate: 90 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                  >
-                    <Sun className="w-3.5 h-3.5" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ y: -20, opacity: 0, rotate: 90 }}
-                    animate={{ y: 0, opacity: 1, rotate: 0 }}
-                    exit={{ y: 20, opacity: 0, rotate: -90 }}
-                    transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-                  >
-                    <Moon className="w-3.5 h-3.5" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {theme === "dark" ? (
+                <Sun className="w-3.5 h-3.5" />
+              ) : (
+                <Moon className="w-3.5 h-3.5" />
+              )}
             </motion.button>
           )}
           <a
